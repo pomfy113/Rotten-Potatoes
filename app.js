@@ -32,6 +32,12 @@ app.get('/', function (req, res) {
   })
 })
 
+app.post('/reviews', function (req, res) {
+  Review.create(req.body, function(err, review) {
+    res.redirect('/reviews/' + review._id);
+  })
+})
+
 // NEW
 app.get('/reviews/new', function (req, res) {
   res.render('reviews-new', {});
@@ -44,6 +50,14 @@ app.get('/reviews/:id', function (req, res) {
   })
 });
 
+//UPDATE
+app.put('/reviews/:id', function (req, res) {
+    console.log(req.body)
+  Review.findByIdAndUpdate(req.params.id,  req.body, function(err, review) {
+    res.redirect('/reviews/' + review._id);
+  })
+})
+
 //EDIT
 app.get('/reviews/:id/edit', function (req, res) {
   Review.findById(req.params.id, function(err, review) {
@@ -51,16 +65,10 @@ app.get('/reviews/:id/edit', function (req, res) {
   })
 })
 
-//UPDATE
-app.put('/reviews/:id', function (req, res) {
-  Review.findAndUpdateById(req.params.id,  req.body, function(err, review) {
-    res.redirect('/reviews/' + review._id);
-  })
-})
-
-app.post('/reviews', function (req, res) {
-  Review.create(req.body, function(err, review) {
-    res.redirect('/reviews/' + review._id);
+// DELETE
+app.delete('/reviews/:id', function (req, res) {
+  Review.findByIdAndRemove(req.params.id, function(err) {
+    res.redirect('/');
   })
 })
 
