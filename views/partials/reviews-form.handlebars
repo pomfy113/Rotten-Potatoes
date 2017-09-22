@@ -1,0 +1,32 @@
+<!-- views/partials/reviews-form.handlebars -->
+
+<!-- TITLE -->
+<p>
+  <label for="title">Title</label><br>
+  <input type="text" name="title" value="{{review.title}}"/>
+</p>
+
+<!-- MOVIE TITLE -->
+<p>
+  <label for="movieTitle">Movie Title</label><br>
+  <input type="text" name="movieTitle" value="{{review.movieTitle}}" />
+</p>
+
+<!-- DESCRIPTION -->
+<p>
+  <label for="description">Description</label><br>
+  <textarea name="description" rows="10" />{{review.description}}</textarea>
+</p>
+<!-- BUTTON -->
+<p>
+  <button type="submit">Save Review</button>
+</p>
+<p>
+    <select name="rating">
+        <option value=1>1 - Bad</option>
+        <option value=2>2 - Meh</option>
+        <option value=3>3 - Okay</option>
+        <option value=4>4 - Pretty good</option>
+        <option value=5>5 - GOAT</option>
+    </select>
+</p>

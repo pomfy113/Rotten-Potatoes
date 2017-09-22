@@ -1,32 +1,6 @@
+<!-- reviews-new.handlebars -->
+
 <legend>New Review</legend>
 <form method="POST" action="/reviews">
-  <!-- TITLE -->
-  <p>
-    <label for="title">Title</label><br>
-    <input type="text" name="title" />
-  </p>
-
-  <p>
-      <label for="movieTitle">Movie Title</label><br>
-      <input type="text" name="movieTitle"/>
-  </p>
-
-  <p>
-      <label for="description">Description</label><br>
-      <input type="text" name="description"/>
-  </p>
-
-  <p>
-      <select name="rating">
-          <option value=1>1 - Bad</option>
-          <option value=2>2 - Meh</option>
-          <option value=3>3 - Okay</option>
-          <option value=4>4 - Pretty good</option>
-          <option value=5>5 - GOAT</option>
-      </select>
-  </p>
-  <!-- BUTTON -->
-  <p>
-    <button type="submit">Save Review</button>
-  </p>
+  {{> reviews-form }}
 </form>

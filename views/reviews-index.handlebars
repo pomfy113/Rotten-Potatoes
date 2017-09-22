@@ -1,7 +1,13 @@
-<h1>Projects</h1>
+<!-- reviews-index.handlebars -->
 
+<h1>Reviews</h1>
 <a href="/reviews/new">New Review</a>
 
 {{#each reviews}}
-  <h3>{{this.title}}</h3>
+  <a href="/reviews/{{this._id}}">
+    <h5>{{this.title}}</h5>
+    <small>{{this.movieTitle}}</small>
+  </a>
+  <a href="/reviews/{{this._id}}/edit">Edit</a>
+  <hr>
 {{/each}}
