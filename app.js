@@ -16,7 +16,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/rotten-potatoes');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
 
 
 var Review = mongoose.model('Review', {
