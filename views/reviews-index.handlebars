@@ -1,21 +1,27 @@
 <!-- reviews-index.handlebars -->
 <h1>Reviews</h1>
-
 <a href="/reviews/new">New Review</a>
 <br>
+<div class="row justify-content-between">
+
 {{#each reviews}}
-<div class="col-sm-3">
+
+
+<div class="col-md-4">
 
   <a href="/reviews/{{this._id}}">
     <h3>{{this.title}}</h3></a>
     <small>{{this.movieTitle}}</small>
     <p>{{this.description}}</p>
 
+    <p class = "buttons">
     <button onclick="location.href='/reviews/{{this._id}}/edit'" type="button">
      Edit</button>
     <form method="POST" action="/reviews/{{this._id}}?_method=DELETE">
-        <button type="submit">Delete</button>
+    <button type="submit">Delete</button>
     </form>
+    </p>
   <hr>
 </div>
 {{/each}}
+</div>

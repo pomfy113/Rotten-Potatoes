@@ -38,10 +38,12 @@ app.post('/reviews', function (req, res) {
   })
 })
 
-// NEW
+
+// NEW; Creates
 app.get('/reviews/new', function (req, res) {
   res.render('reviews-new', {});
 })
+
 
 // SHOW
 app.get('/reviews/:id', function (req, res) {
@@ -50,13 +52,6 @@ app.get('/reviews/:id', function (req, res) {
   })
 });
 
-//UPDATE
-app.put('/reviews/:id', function (req, res) {
-    console.log(req.body)
-  Review.findByIdAndUpdate(req.params.id,  req.body, function(err, review) {
-    res.redirect('/reviews/' + review._id);
-  })
-})
 
 //EDIT
 app.get('/reviews/:id/edit', function (req, res) {
@@ -65,13 +60,21 @@ app.get('/reviews/:id/edit', function (req, res) {
   })
 })
 
+//UPDATE
+app.put('/reviews/:id', function (req, res) {
+  Review.findByIdAndUpdate(req.params.id,  req.body, function(err, review) {
+    res.redirect('/reviews/' + review._id);
+  })
+})
+
+
 // DELETE
 app.delete('/reviews/:id', function (req, res) {
   Review.findByIdAndRemove(req.params.id, function(err) {
     res.redirect('/');
   })
 })
-
+//
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
