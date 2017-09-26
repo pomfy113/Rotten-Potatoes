@@ -5,6 +5,7 @@ var exphbs  = require('express-handlebars');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
+app.use(express.static('public'))
 
 
 // var reviews = [
@@ -32,6 +33,7 @@ app.get('/', function (req, res) {
   })
 })
 
+// CREATE; create a new review, then redirect to new review
 app.post('/reviews', function (req, res) {
   Review.create(req.body, function(err, review) {
     res.redirect('/reviews/' + review._id);
@@ -39,13 +41,13 @@ app.post('/reviews', function (req, res) {
 })
 
 
-// NEW; Creates
+// NEW; gets the new review form
 app.get('/reviews/new', function (req, res) {
   res.render('reviews-new', {});
 })
 
 
-// SHOW
+// SHOW; gets the id number and shows it
 app.get('/reviews/:id', function (req, res) {
   Review.findById(req.params.id).exec(function (err, review) {
     res.render('reviews-show', {review: review});
@@ -53,14 +55,14 @@ app.get('/reviews/:id', function (req, res) {
 });
 
 
-//EDIT
+// EDIT; gets the edit form
 app.get('/reviews/:id/edit', function (req, res) {
   Review.findById(req.params.id, function(err, review) {
     res.render('reviews-edit', {review: review});
   })
 })
 
-//UPDATE
+//UPDATE; after edit form is complete, this PUTs the new data into the page
 app.put('/reviews/:id', function (req, res) {
   Review.findByIdAndUpdate(req.params.id,  req.body, function(err, review) {
     res.redirect('/reviews/' + review._id);
@@ -68,7 +70,7 @@ app.put('/reviews/:id', function (req, res) {
 })
 
 
-// DELETE
+// DELETE; remove that review entirely
 app.delete('/reviews/:id', function (req, res) {
   Review.findByIdAndRemove(req.params.id, function(err) {
     res.redirect('/');
